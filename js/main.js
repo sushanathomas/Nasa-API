@@ -14,6 +14,7 @@ function pressButton() {
     // I create the NASA API URL.
     // In a temporate literal (${dateImage}) adds the date the user selected to the URL.
     const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}&date=${dateImage}`;
+
     // Were saying go to Nasa's website and fetch us the data/information. 
     fetch(nasaUrl)
         .then(response => response.json()) //.then the response we get from NASA needs to be in json. format. 
