@@ -2,7 +2,7 @@
 
 
 //Find the button in the HTML, when clicked, run the pressed button function. 
-document.querySelector("button").addEventListener('click', pressButton) 
+document.querySelector("button").addEventListener('click', pressButton)
 
 document.querySelector('img').style.display = 'none'; //Hide img on the pre-load
 document.querySelector('video').style.display = 'none'; //To hide the image/video thats on the preload of the page, because nothing is being searched as yet. 
@@ -13,8 +13,7 @@ function pressButton() {
     const dateImage = document.querySelector("input").value
     // I create the NASA API URL.
     // In a temporate literal (${dateImage}) adds the date the user selected to the URL.
-    const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=YOUR_API_KEY&date=${dateImage}`;
-    
+    const nasaUrl = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}&date=${dateImage}`;
     // Were saying go to Nasa's website and fetch us the data/information. 
     fetch(nasaUrl)
         .then(response => response.json()) //.then the response we get from NASA needs to be in json. format. 
@@ -23,28 +22,28 @@ function pressButton() {
             console.log(data) // Now show data from NASA into the console. 
 
             // Now take title from NASA and display it inside of our h2 element in our html.
-            document.querySelector('h2').innerText = data.title 
+            document.querySelector('h2').innerText = data.title
 
             // Take the explanation from NASA and add it into our h3 element in our html. 
-            document.querySelector('h3').innerHTML = data.explanation 
+            document.querySelector('h3').innerHTML = data.explanation
 
             //If NASA returns an image... 
             if (data.media_type === 'image') {
                 //Put the image from NASA into out Img element. 
-                document.querySelector('img').src = data.hdurl 
+                document.querySelector('img').src = data.hdurl
                 // Show the image(img). 
-                document.querySelector('img').style.display = 'block'; 
+                document.querySelector('img').style.display = 'block';
                 //...But hide the video. 
                 document.querySelector('video').style.display = 'none';
 
                 // If NASA doesn't return an image, it should return a video. 
-            } else if (data.media_type === 'video') { 
+            } else if (data.media_type === 'video') {
                 //To put NASA's video inthe video element. 
                 document.querySelector("video").src = data.url
                 //Show the video. 
-                document.querySelector("video").style.display = "block"   
+                document.querySelector("video").style.display = "block"
                 //...But hide the video. 
-                document.querySelector("img").style.display = "none"   
+                document.querySelector("img").style.display = "none"
             }
         })
         //.catch is saying, If something goes wrong print any errors in the browswer's console to see when we get something worng. 
